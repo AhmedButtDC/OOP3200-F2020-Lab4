@@ -21,19 +21,25 @@
 class StandardDeck
 {
 public:
-	// Initialization:
+	//Initialization:
 	StandardDeck();
-
-	// Rule of three:
+	virtual void Initialize();
+	
+	//Rule of three:
 	~StandardDeck();
+	StandardDeck(const StandardDeck& other_deck);
+	StandardDeck& operator=(const StandardDeck& other_deck);
 
+	//Accessors:
+	int CardsRemaining(PlayingCard cardsRemaining[]);
+	PlayingCard DrawNextCard(PlayingCard cardsRemaining[]);
 
+	//Mutators:
+	void Shuffle();
 
-	// Accessors:
-
-	// Mutators:
 private:
-
+	int PlayingCard::DEFAULT_VALUE_WANTED;
+	PlayingCard cards{};
 };
 
 #endif /* defined (__STANDARD_DECK__) */
