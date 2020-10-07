@@ -34,12 +34,12 @@ public:
 	int CardsRemaining(PlayingCard cardsRemaining[]);
 	PlayingCard DrawNextCard(PlayingCard cardsRemaining[]);
 
+
 	//Mutators:
 	void Shuffle();
 
 private:
-	int PlayingCard::DEFAULT_VALUE_WANTED;
-	PlayingCard cards{};
+	PlayingCard *cards;
 };
 
 #endif /* defined (__STANDARD_DECK__) */
