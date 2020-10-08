@@ -24,22 +24,23 @@ public:
 	//Initialization:
 	StandardDeck();
 	virtual void Initialize();
-	
+
 	//Rule of three:
 	~StandardDeck();
-	StandardDeck(const StandardDeck& other_deck);
-	StandardDeck& operator=(const StandardDeck& other_deck);
+	StandardDeck(StandardDeck& other_deck);
+	StandardDeck& operator=(StandardDeck& other_deck);
 
 	//Accessors:
-	int CardsRemaining(PlayingCard cardsRemaining[]);
-	PlayingCard DrawNextCard(PlayingCard cardsRemaining[]);
-
+	int CardsRemaining();
+	PlayingCard DrawNextCard();
 
 	//Mutators:
-	void Shuffle();
+	void SetDeck(PlayingCard deck[]);
+	void Shuffle(PlayingCard deck[]);
 
 private:
-	PlayingCard *cards;
+	PlayingCard cards[52];
+	PlayingCard *ptr = cards;
 };
 
 #endif /* defined (__STANDARD_DECK__) */

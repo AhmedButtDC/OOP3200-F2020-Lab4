@@ -5,7 +5,7 @@
 
 #include "StandardDeck.h"
 
-StandardDeck::StandardDeck() : cards(0)
+StandardDeck::StandardDeck() : ptr(0)
 {
 	Initialize();
 }
@@ -14,26 +14,20 @@ void StandardDeck::Initialize()
 {
 	int suit = 0, rank = 1;
 
-	if (cards != 0)
+	if (ptr != 0)
 	{
 		delete(cards);
 	}
 
-	cards = new PlayingCard[52];
-
-	for (int i = 0; i <= 51; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		cards[i].SetSuit(suit);
-		cards[i].SetRank(rank);
-		suit++;
+		cards[i] = PlayingCard(rank, suit, i, true);
 		rank++;
-		if (suit == 4)
-		{
-			suit = 0;
-		}
+
 		if (rank == 14)
 		{
-			rank = 0;
+			suit++;
+			rank = 1;
 		}
 	}
 }
@@ -41,27 +35,36 @@ void StandardDeck::Initialize()
 StandardDeck::~StandardDeck()
 = default;
 
-StandardDeck::StandardDeck(const StandardDeck& other_deck)
+StandardDeck::StandardDeck(StandardDeck& other_deck)
 {
-	
+	SetDeck(other_deck.cards);
 }
 
-StandardDeck& StandardDeck::operator=(const StandardDeck& other_deck)
+StandardDeck& StandardDeck::operator=(StandardDeck& other_deck)
 {
-	
+	SetDeck(other_deck.cards);
+	return *this;
 }
 
-int StandardDeck::CardsRemaining(PlayingCard cardsRemaining[])
+int StandardDeck::CardsRemaining()
 {
-	return 0;
+	return sizeof(cards)/16;
 }
 
-PlayingCard StandardDeck::DrawNextCard(PlayingCard cardsRemaining[])
+PlayingCard StandardDeck::DrawNextCard()
 {
 	return PlayingCard();
 }
 
-void StandardDeck::Shuffle()
+void StandardDeck::SetDeck(PlayingCard deck[])
+{
+	for (int i = 0; i <= 51; i++)
+	{
+		cards[i] = deck[i];
+	}
+}
+
+void StandardDeck::Shuffle(PlayingCard deck[])
 {
 
 }

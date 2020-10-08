@@ -14,8 +14,8 @@ int main()
 	srand(time(nullptr)); // seed the random number generator
 
 	// create a deck
-	StandardDeck deck();
-	
+	StandardDeck deck;
+	std::cout << deck.CardsRemaining();
 
 	// Show the deck object as initialized
 	Pause();
