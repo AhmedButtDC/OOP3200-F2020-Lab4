@@ -16,6 +16,7 @@
 #ifndef __STANDARD_DECK__
 #define __STANDARD_DECK__
 
+#include <vector>
 #include "PlayingCard.h"
 
 class StandardDeck
@@ -32,15 +33,17 @@ public:
 
 	//Accessors:
 	int CardsRemaining();
-	PlayingCard DrawNextCard();
+	void DrawNextCard();
+	void DrawRandomCard();
+	void ShowDeck();
 
 	//Mutators:
-	void SetDeck(PlayingCard deck[]);
-	void Shuffle(PlayingCard deck[]);
+	void SetDeck(std::vector<PlayingCard> deck);
+	void Shuffle();
 
 private:
-	PlayingCard cards[52];
-	PlayingCard *ptr = cards;
+	bool created;
+	std::vector<PlayingCard> cards;
 };
 
 #endif /* defined (__STANDARD_DECK__) */

@@ -4,24 +4,28 @@
 //File:				OOP3200-F2020-Lab4
 
 #include "StandardDeck.h"
+#include <ctime>
+#include <iostream>
 
-StandardDeck::StandardDeck() : ptr(0)
+StandardDeck::StandardDeck() : created(false)
 {
 	Initialize();
 }
 
 void StandardDeck::Initialize()
 {
+	PlayingCard card;
 	int suit = 0, rank = 1;
 
-	if (ptr != 0)
+	if (created == true)
 	{
-		delete(cards);
+		cards.clear();
 	}
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 52; i++)
 	{
-		cards[i] = PlayingCard(rank, suit, i, true);
+		card = PlayingCard(rank, suit, i, true);
+		cards.push_back(card);
 		rank++;
 
 		if (rank == 14)
@@ -30,6 +34,7 @@ void StandardDeck::Initialize()
 			rank = 1;
 		}
 	}
+	created = true;
 }
 
 StandardDeck::~StandardDeck()
@@ -48,23 +53,47 @@ StandardDeck& StandardDeck::operator=(StandardDeck& other_deck)
 
 int StandardDeck::CardsRemaining()
 {
-	return sizeof(cards)/16;
+	return cards.size();
 }
 
-PlayingCard StandardDeck::DrawNextCard()
+void StandardDeck::DrawNextCard()
 {
-	return PlayingCard();
+	std::cout << cards[0].GetRank() << " of " << cards[0].GetSuit();
+	cards.erase(cards.begin());
 }
 
-void StandardDeck::SetDeck(PlayingCard deck[])
+void StandardDeck::DrawRandomCard()
 {
-	for (int i = 0; i <= 51; i++)
+	srand(time(NULL));
+	int random = rand() % cards.size();
+	std::cout << cards[random].GetRank() << " of " << cards[random].GetSuit();
+	cards.erase(cards.begin() + random);
+}
+
+void StandardDeck::ShowDeck()
+{
+	for (int i = 0; i <= cards.size() - 1; i++)
+	{
+		std::cout << i + 1 << " " << cards[i].GetRank() << " of " << cards[i].GetSuit() << "\n";
+	}
+}
+
+void StandardDeck::SetDeck(std::vector<PlayingCard> deck)
+{
+	for (int i = 0; i <= CardsRemaining(); i++)
 	{
 		cards[i] = deck[i];
 	}
 }
 
-void StandardDeck::Shuffle(PlayingCard deck[])
+void StandardDeck::Shuffle()
 {
-
+	srand(time(NULL));
+	for (int i = 0; i <= cards.size(); i++)
+	{
+		int random1 = rand() % cards.size();
+		int random2 = rand() % cards.size();
+		
+		std::swap(cards[random1], cards[random2]);
+	}
 }
