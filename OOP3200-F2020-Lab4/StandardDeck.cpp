@@ -56,20 +56,6 @@ int StandardDeck::CardsRemaining()
 	return cards.size();
 }
 
-void StandardDeck::DrawNextCard()
-{
-	std::cout << cards[0].GetRank() << " of " << cards[0].GetSuit();
-	cards.erase(cards.begin());
-}
-
-void StandardDeck::DrawRandomCard()
-{
-	srand(time(NULL));
-	int random = rand() % cards.size();
-	std::cout << cards[random].GetRank() << " of " << cards[random].GetSuit();
-	cards.erase(cards.begin() + random);
-}
-
 void StandardDeck::ShowDeck()
 {
 	for (int i = 0; i <= cards.size() - 1; i++)
@@ -84,6 +70,20 @@ void StandardDeck::SetDeck(std::vector<PlayingCard> deck)
 	{
 		cards[i] = deck[i];
 	}
+}
+
+void StandardDeck::DrawNextCard()
+{
+	std::cout << cards[0].GetRank() << " of " << cards[0].GetSuit();
+	cards.erase(cards.begin());
+}
+
+void StandardDeck::DrawRandomCard()
+{
+	srand(time(NULL));
+	int random = rand() % cards.size();
+	std::cout << cards[random].GetRank() << " of " << cards[random].GetSuit();
+	cards.erase(cards.begin() + random);
 }
 
 void StandardDeck::Shuffle()

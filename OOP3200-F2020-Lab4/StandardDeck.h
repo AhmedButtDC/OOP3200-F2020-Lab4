@@ -33,12 +33,12 @@ public:
 
 	//Accessors:
 	int CardsRemaining();
-	void DrawNextCard();
-	void DrawRandomCard();
 	void ShowDeck();
 
 	//Mutators:
 	void SetDeck(std::vector<PlayingCard> deck);
+	void DrawNextCard();
+	void DrawRandomCard();
 	void Shuffle();
 
 private:
