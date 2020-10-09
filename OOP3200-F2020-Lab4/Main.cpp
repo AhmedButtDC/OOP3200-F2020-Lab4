@@ -1,3 +1,8 @@
+//Name:             Ahmed Butt, Muzhda Ehsan
+//Student ID:       100770449, 100770164
+//Last Modified:    October 9, 2020
+//File:				OOP3200-F2020-Lab4
+
 #include <ctime>
 #include <iostream>
 #include "StandardDeck.h"
