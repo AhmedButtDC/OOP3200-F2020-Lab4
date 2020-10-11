@@ -18,13 +18,14 @@ void StandardDeck::Initialize()
 {
 	PlayingCard card;
 	int suit = 0, rank = 1;
+	const int maxCards = 52;
 
 	if (ptr != 0) //if pointer has no data, deck is empty
 	{
 		deck.clear(); //clear deck if not empty
 	}
 
-	for (int i = 0; i < 52; i++) //this loop creates the deck of 52 cards
+	for (int i = 0; i < maxCards; i++) //this loop creates the deck of 52 cards
 	{
 		card = PlayingCard(rank, suit, i, true);
 		deck.push_back(card);
